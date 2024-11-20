@@ -1,0 +1,392 @@
+<?xml version="1.0" ?>
+<!-- NOTE! robot name has to be set to match description package -->
+<robot name="irb6640_205">
+  <!-- Conversion were obtained from http://www.e-paint.co.uk/Lab_values.asp
+       unless otherwise stated. -->
+  <!-- LINKS -->
+  <!-- base link -->
+  <link name="base_link">
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/base_link.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/base_link.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- link 1 -->
+  <link name="link1">
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.0 -0.0 -0.2345"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/link1.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.0 -0.0 -0.2345"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/link1.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- link 2 -->
+  <link name="link2">
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.32 0.01 -0.78"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/link2.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.32 0.01 -0.78"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/link2.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- link 3 -->
+  <link name="link3">
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.32 0.185 -2.06"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/link3.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.32 0.185 -2.06"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/link3.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- link 4 -->
+  <link name="link4">
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.551 -8.673617379884035e-18 -2.2600000000000002"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/link4.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.551 -8.673617379884035e-18 -2.2600000000000002"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/link4.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- link 5 -->
+  <link name="link5">
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-1.4625000000000001 -8.673617379884035e-18 -2.2600000000000002"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/link5.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-1.4625000000000001 -8.673617379884035e-18 -2.2600000000000002"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/link5.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- link 6 -->
+  <link name="link6">
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-1.6625 -8.673617379884035e-18 -2.2600000000000002"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/link6.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-1.6625 -8.673617379884035e-18 -2.2600000000000002"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/link6.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- All-zero tool frame. This frame should correspond to the TOOL frame of the robot's controller.) -->
+  <link name="tool0"/>
+  <!-- screwdriver -->
+  <link name="screwdriver">
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="-1.5707963267948966 -1.5707963267948966 0"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/screwdriver/weber_screwdriver_sevp30_with_tx10bit.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="-1.5707963267948966 -1.5707963267948966 0"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/screwdriver/weber_screwdriver_sevp30_with_tx10bit.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- screwdriver_tcp -->
+  <link name="screwdriver_tcp"/>
+  <!-- cylinder and piston -->
+  <link name="cylinder_link">
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.3647 -0.0 -0.6345000000000001"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/cylinder_link.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.3647 -0.0 -0.6345000000000001"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/cylinder_link.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="piston_link">
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.10005 0.01 -0.71275"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/piston_link.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.10005 0.01 -0.71275"/>
+      <geometry>
+        <mesh filename="package://irb_description/urdf/meshes/irb6640_205/piston_link.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- END LINKS -->
+  <!-- JOINTS -->
+  <!-- joint 1 -->
+  <joint name="joint_1" type="revolute">
+    <origin xyz="0 0.0 0.2345"/>
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0" lower="-2.9670597283903604" upper="2.9670597283903604" velocity="1.7453292519943295"/>
+  </joint>
+  <!-- joint 2 -->
+  <joint name="joint_2" type="revolute">
+    <origin xyz="0.32 -0.01 0.5455"/>
+    <parent link="link1"/>
+    <child link="link2"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="0" lower="-1.1344640137963142" upper="1.4835298641951802" velocity="1.5707963267948966"/>
+  </joint>
+  <!-- joint 3 -->
+  <joint name="joint_3" type="revolute">
+    <origin xyz="0.0 -0.175 1.28"/>
+    <parent link="link2"/>
+    <child link="link3"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="0" lower="-3.141592653589793" upper="1.2217304763960306" velocity="1.5707963267948966"/>
+  </joint>
+  <!-- joint 4 -->
+  <joint name="joint_4" type="revolute">
+    <origin xyz="0.231 0.185 0.2"/>
+    <parent link="link3"/>
+    <child link="link4"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="0" lower="-5.235987755982989" upper="5.235987755982989" velocity="2.9670597283903604"/>
+  </joint>
+  <!-- joint 5 -->
+  <joint name="joint_5" type="revolute">
+    <origin xyz="0.9115 0.0 0.0"/>
+    <parent link="link4"/>
+    <child link="link5"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="0" lower="-1.7453292519943295" upper="1.7453292519943295" velocity="2.0943951023931953"/>
+  </joint>
+  <!-- joint 6 -->
+  <joint name="joint_6" type="revolute">
+    <origin xyz="0.2 0.0 0.0"/>
+    <parent link="link5"/>
+    <child link="link6"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="0" lower="-6.283185307179586" upper="6.283185307179586" velocity="3.3161255787892263"/>
+  </joint>
+  <!-- tool frame - fixed frame -->
+  <joint name="joint_6-tool0" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    <parent link="link6"/>
+    <child link="tool0"/>
+  </joint>
+  <!-- screwdriver -->
+  <joint name="tool0-screwdriver" type="fixed">
+    <origin rpy="0 0 0" xyz="0.1 0.0 0.0"/>
+    <parent link="tool0"/>
+    <child link="screwdriver"/>
+  </joint>
+  <!-- screwdriver_tcp -->
+  <joint name="screwdriver-screwdriver_tcp" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 -0.3"/>
+    <parent link="screwdriver"/>
+    <child link="screwdriver_tcp"/>
+  </joint>
+  <!-- piston & cylinder joints -->
+  <joint name="piston_joint" type="continuous">
+    <origin xyz="-0.21995 0.0 -0.06725"/>
+    <axis xyz="0 1 0"/>
+    <parent link="link2"/>
+    <child link="piston_link"/>
+    <mimic joint="joint_2" multiplier="-1.3"/>
+  </joint>
+  <joint name="cylinder_joint" type="continuous">
+    <origin xyz="-0.3647 0.0 0.4"/>
+    <axis xyz="0 1 0"/>
+    <parent link="link1"/>
+    <child link="cylinder_link"/>
+    <mimic joint="joint_2" multiplier="-0.3"/>
+  </joint>
+  <!-- END JOINTS -->
+  <!-- Standard frames for industrial robots. Also useful for manipulators.
+         (ROS-I specs - https://wiki.ros.org/Industrial/Tutorials/WorkingWithRosIndustrialRobotSupportPackages#Standardised_links_.2F_frames)-->
+  <!-- This frame should correspond to the BASE coordinate system of robot's controller.) -->
+  <link name="base"/>
+  <!-- ROS base_link to ABB World Coordinates transform -->
+  <joint name="base_link-base" type="fixed">
+    <origin xyz="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="base"/>
+  </joint>
+  <ros2_control name="irb6640_205" type="system">
+    <hardware>
+      <plugin>robot_hardware_inteface/RobotHardwareInteface</plugin>
+    </hardware>
+    <joint name="joint_1">
+      <command_interface name="position">
+        <!-- Add/Remove interfaces as needed -->
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+      <state_interface name="acceleration"/>
+    </joint>
+    <joint name="joint_2">
+      <command_interface name="position">
+        <!-- Add/Remove interfaces as needed -->
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+      <state_interface name="acceleration"/>
+    </joint>
+    <joint name="joint_3">
+      <command_interface name="position">
+        <!-- Add/Remove interfaces as needed -->
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+      <state_interface name="acceleration"/>
+    </joint>
+    <joint name="joint_4">
+      <command_interface name="position">
+        <!-- Add/Remove interfaces as needed -->
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+      <state_interface name="acceleration"/>
+    </joint>
+    <joint name="joint_5">
+      <command_interface name="position">
+        <!-- Add/Remove interfaces as needed -->
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+      <state_interface name="acceleration"/>
+    </joint>
+    <joint name="joint_6">
+      <command_interface name="position">
+        <!-- Add/Remove interfaces as needed -->
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+      <state_interface name="acceleration"/>
+    </joint>
+    <!-- Mimic joints -->
+    <!-- <joint name="${prefix}piston_joint">
+        <param name="mimic">joint_2</param>
+        <param name="multiplier">-1.3</param>
+        <command_interface name="position"/>     
+        <state_interface name="position"/>
+      </joint>
+      <joint name="${prefix}cylinder_joint">
+        <param name="mimic">joint_2</param>
+        <param name="multiplier">-0.3</param>
+        <command_interface name="position"/>     
+        <state_interface name="position"/>
+      </joint> -->
+  </ros2_control>
+</robot>
