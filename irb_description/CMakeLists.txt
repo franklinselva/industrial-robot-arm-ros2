@@ -11,7 +11,7 @@ find_package(xacro REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
-install(DIRECTORY launch urdf rviz
+install(DIRECTORY urdf
   DESTINATION share/${PROJECT_NAME}
 )
 
