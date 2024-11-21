@@ -1,0 +1,27 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: irb_description
+    relative_path: urdf/robot_w_screwdriver.urdf
+  srdf:
+    relative_path: config/irb6640_205.srdf
+  package_settings:
+    author_name: franklinselva
+    author_email: franklinselva10@gmail.com
+    generated_timestamp: 1732198690
+  control_xacro:
+    command:
+      - position
+      - velocity
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+      - velocity
+    state:
+      - position
+      - velocity
