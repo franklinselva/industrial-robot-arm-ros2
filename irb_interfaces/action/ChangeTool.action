@@ -1,0 +1,16 @@
+uint8 tool_type
+uint8 tool_size
+
+uint8 TOOL_TYPE_NONE = 0
+uint8 TOOL_TYPE_TORX = 1
+
+uint8 TOOL_SIZE_10 = 0
+uint8 TOOL_SIZE_15 = 1
+uint8 TOOL_SIZE_20 = 2
+uint8 TOOL_SIZE_25 = 3
+uint8 TOOL_SIZE_30 = 4
+
+---
+bool success
+---
+float32 completion_percentage

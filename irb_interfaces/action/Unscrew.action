@@ -1,0 +1,5 @@
+int32 no_turns
+---
+bool success
+---
+float32 completion_percentage

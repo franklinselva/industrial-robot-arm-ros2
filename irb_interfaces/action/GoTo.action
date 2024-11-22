@@ -1,0 +1,6 @@
+# MoveToPose.action
+geometry_msgs/PoseStamped pose_goal
+---
+bool success
+---
+float32 completion_percentage
