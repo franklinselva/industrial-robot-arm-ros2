@@ -3,6 +3,7 @@ Reads a json file from the configs/ directory and returns the screw poses.
 """
 
 import json
+import time
 
 import rclpy
 from ament_index_python.packages import get_package_share_directory  # type: ignore
@@ -33,16 +34,32 @@ class DetectScrewsActionServer(Node):
         """Execute the action."""
         self.get_logger().info("Executing goal...")
 
+        time.sleep(3)
+
         # Read the screw poses from the json file
         with open(CONFIG_PATH, "r", encoding="utf-8") as f:
             screw_poses = json.load(f)
 
         # Create the result message
         result = DetectScrews.Result()
-        result.screw_poses = [Pose(**pose) for pose in screw_poses]
+        result.screw_poses = self._process_poses(screw_poses["screws"]["poses"])
 
-        # Return the result
-        goal_handle.succeed(result)
+        return result
+
+    def _process_poses(self, screw_poses):
+        """Process the screw poses."""
+        screw_pose_msgs = []
+        for screw_pose in screw_poses:
+            pose = Pose()
+            pose.position.x = screw_pose["position"][0]
+            pose.position.y = screw_pose["position"][1]
+            pose.position.z = screw_pose["position"][2]
+            pose.orientation.x = screw_pose["orientation"][0]
+            pose.orientation.y = screw_pose["orientation"][1]
+            pose.orientation.z = screw_pose["orientation"][2]
+            pose.orientation.w = screw_pose["orientation"][3]
+            screw_pose_msgs.append(pose)
+        return screw_pose_msgs
 
 
 def main(args=None):

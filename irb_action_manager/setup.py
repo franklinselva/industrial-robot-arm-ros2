@@ -13,7 +13,7 @@ setup(
     data_files=[
         ("share/ament_index/resource_index/packages", ["resource/" + PACKAGE_NAME]),
         ("share/" + PACKAGE_NAME, ["package.xml"]),
-        ("share/" + PACKAGE_NAME + "/config", glob("config/*.yaml")),
+        ("share/" + PACKAGE_NAME + "/config", glob("config/*")),
         ("share/" + PACKAGE_NAME + "/launch", glob("launch/*.launch.py")),
     ],
     install_requires=["setuptools"],

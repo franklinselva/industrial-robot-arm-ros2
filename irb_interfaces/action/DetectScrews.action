@@ -1,5 +1,5 @@
 int32 no_screws
 ---
-geometry_msgs/PoseStamped[] screw_poses
+geometry_msgs/Pose[] screw_poses
 ---
 float32 completion_percentage
