@@ -36,3 +36,9 @@ source install/setup.bash
 ### Running the project
 
 | TODO: Add instructions on how to run the project
+
+
+### Known Issues
+
+ - Moveit2 on ROS2 Jazzy might face issues when running demo.launch.py. You can refer to the issue [moveit/moveit2#2734](https://github.com/moveit/moveit2/issues/2734)
+ - The action servers `detect_screws` and `change_tool` are mocked for demonstration purposes. Thus the implementaion is not much reliable. It may fail in some cases. The actual idea is to define the action servers to combine for `srv` and `action`. This may be improved in the future.
