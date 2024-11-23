@@ -73,8 +73,9 @@ class GoToActionServer(Node):
 
         self.arm.set_start_state_to_current_state()
 
-        goal = goal_handle.request.goal_pose
-        self.arm.set_goal_state(pose_stamped_msg=goal, pose_link="screw_driver")
+        self.arm.set_goal_state(
+            configuration_name=goal_handle.request.goal_configuration
+        )
 
         result = GoTo.Result()
         result.success = plan_and_execute(self.irb, self.arm, self.logger)
@@ -86,16 +87,13 @@ class GoToActionServer(Node):
         with self.action_lock:
             return self._drop_screw_execute_callback(goal_handle)
 
-    def _drop_screw_execute_callback(self, goal_handle):
+    def _drop_screw_execute_callback(self, _):
         """DropScrew action server callback."""
         self.logger.info("Executing goal for DropScrew action server")
 
-        # TODO: Add logic to drop the screw through simple way points
-
         self.arm.set_start_state_to_current_state()
 
-        goal = goal_handle.request.goal_pose
-        self.arm.set_goal_state(pose_stamped_msg=goal, pose_link="screw_driver")
+        self.arm.set_goal_state(configuration_name="drop_screws")
 
         result = GoTo.Result()
         result.success = plan_and_execute(self.irb, self.arm, self.logger)

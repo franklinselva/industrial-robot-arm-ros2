@@ -1,28 +1,28 @@
-"""Goto action client as a library."""
+"""Drop screw action client."""
 
 import rclpy
 from rclpy.action import ActionClient
 from rclpy.node import Node
 
-from irb_interfaces.action import GoTo  # type: ignore
+from irb_interfaces.action import DropScrew  # type: ignore
 
 
-class GoToClient(Node):
-    """GoTo action client class."""
+class DropScrewClient(Node):
+    """DropScrew action client class."""
 
     def __init__(self):
         """Initialize the action client."""
-        super().__init__("goto_client")
-        self._client = ActionClient(self, GoTo, "goto")
+        super().__init__("drop_screw_client")
+        self._client = ActionClient(self, DropScrew, "drop_screw")
 
         self._client.wait_for_server()
         self.future = None
-        self.get_logger().info("GoTo Action server is up...")
+        self.get_logger().info("DropScrew Action server is up...")
 
-    def send_goal(self, goal_configuration: str):
+    def send_goal(self):
         """Send goal to the action server."""
-        goal_msg = GoTo.Goal()
-        goal_msg.goal_configuration = goal_configuration
+        goal_msg = DropScrew.Goal()
+
         self.future = self._client.send_goal_async(goal_msg)
         self.future.add_done_callback(self.goal_response_callback)
 
@@ -51,11 +51,10 @@ class GoToClient(Node):
 
 
 def main(args=None):
-    """GoTo action client main function."""
+    """DropScrew action client main function."""
     rclpy.init(args=args)
-    client = GoToClient()
-    goal_configuration = "detect_screws"
-    client.send_goal(goal_configuration)
+    client = DropScrewClient()
+    client.send_goal()
     rclpy.spin(client)
 
 

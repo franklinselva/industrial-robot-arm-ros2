@@ -1,4 +1,5 @@
 # MoveToPose.action
+string goal_configuration
 geometry_msgs/PoseStamped goal_pose
 ---
 bool success
