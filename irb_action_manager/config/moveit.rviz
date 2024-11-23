@@ -151,7 +151,7 @@ Visualization Manager:
         Interactive Marker Size: 0
         Joint Violation Color: 255; 0; 255
         Planning Group: arm
-        Query Goal State: true
+        Query Goal State: false
         Query Start State: false
         Show Workspace: false
         Start State Alpha: 1
@@ -229,7 +229,7 @@ Visualization Manager:
             Value: true
           screwdriver_tcp:
             Alpha: 1
-            Show Axes: false
+            Show Axes: true
             Show Trail: false
           tool0:
             Alpha: 1
@@ -240,6 +240,13 @@ Visualization Manager:
         Show Robot Visual: true
       Value: true
       Velocity_Scaling_Factor: 0.1
+    - Class: rviz_default_plugins/Axes
+      Enabled: true
+      Length: 1
+      Name: Axes
+      Radius: 0.10000000149011612
+      Reference Frame: <Fixed Frame>
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -258,25 +265,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 10.241739273071289
+      Distance: 5.086432933807373
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.10000000149011612
-        Y: 0.25
-        Z: 0.30000001192092896
+        X: -0.9014543294906616
+        Y: 0.2192370742559433
+        Z: 1.4585837125778198
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5
+      Pitch: 0.25999996066093445
       Target Frame: base_link
       Value: Orbit (rviz_default_plugins)
-      Yaw: -0.6230000257492065
+      Yaw: 6.1869988441467285
     Saved: ~
 Window Geometry:
   Displays:
@@ -290,7 +297,7 @@ Window Geometry:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000002b4000004fdfc0200000005fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004400fffffffb000000100044006900730070006c006100790073010000003f00000195000000cc00fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000001da0000025f0000019600fffffffb0000000800480065006c0070000000029a0000006e0000006f00fffffffb0000000a00560069006500770073010000043f000000fd000000a900ffffff00000704000004fd00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000002b4000004fdfc0200000005fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004400fffffffb000000100044006900730070006c006100790073010000003f00000195000000cc00fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000001da0000025f000001a100fffffffb0000000800480065006c0070000000029a0000006e0000006f00fffffffb0000000a00560069006500770073010000043f000000fd000000a900ffffff00000704000004fd00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
     collapsed: false
   Width: 2494

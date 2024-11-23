@@ -4,7 +4,10 @@ import os
 
 from ament_index_python.packages import get_package_share_directory  # type: ignore
 from launch import LaunchDescription  # type: ignore
-from launch.actions import ExecuteProcess  # type: ignore
+from launch.actions import ExecuteProcess, IncludeLaunchDescription  # type: ignore
+from launch.launch_description_sources import (
+    PythonLaunchDescriptionSource,  # type: ignore
+)
 from launch_ros.actions import Node
 from moveit_configs_utils import MoveItConfigsBuilder  # type: ignore
 
@@ -87,6 +90,16 @@ def generate_launch_description():
         output="both",
     )
 
+    action_servers = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                get_package_share_directory("irb_action_manager"),
+                "launch",
+                "action_servers.launch.py",
+            )
+        )
+    )
+
     load_controllers = []
     for controller in [
         "arm_controller",
@@ -107,6 +120,7 @@ def generate_launch_description():
             static_tf,
             robot_state_publisher,
             ros2_control_node,
+            action_servers,
         ]
         + load_controllers
     )
