@@ -1,11 +1,11 @@
-###IRB6640 Robot Arm for Unscrewing task in a battery pack assembly line
+### IRB6640 Robot Arm for Unscrewing task in a battery pack assembly line
 
 This repository is a demonstration of the use of the IRB6640 robot arm for unscrewing task in a battery pack assembly line.
 
 ### Technologies Used
 
  - ROS2 Jazzy
- - RCLPY
+ - rclpy
  - MoveIt2
  - [Embedded Systems Bridge](https://github.com/aiplan4eu/embedded-systems-bridge) for task planning
 
