@@ -24,7 +24,7 @@ setup(
     license="TODO: License declaration",
     entry_points={
         "console_scripts": [
-            "goto_action_server = irb_action_manager.goto_action_server:main",
+            "moveit_action_server = irb_action_manager.moveit_action_server:main",
             "detect_screws_action_server = irb_action_manager.detect_screws_action_server:main",
             "change_tool_action_server = irb_action_manager.change_tool_action_server:main",
             "unscrew_action_server = irb_action_manager.unscrew_action_server:main",

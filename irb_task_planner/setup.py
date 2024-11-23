@@ -24,6 +24,7 @@ setup(
             "change_tool_client = irb_task_planner.action_clients.change_tool:main",
             "unscrew_client = irb_task_planner.action_clients.unscrew:main",
             "detect_screw_client = irb_task_planner.action_clients.detect_screw:main",
+            "goto_client = irb_task_planner.action_clients.goto:main",
         ],
     },
 )

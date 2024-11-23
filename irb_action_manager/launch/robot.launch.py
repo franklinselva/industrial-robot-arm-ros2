@@ -43,10 +43,10 @@ def generate_launch_description():
         .to_moveit_configs()
     )
 
-    goto_action_server = Node(
-        name="goto_action_server",
+    moveit_action_server = Node(
+        name="moveit_action_server",
         package="irb_action_manager",
-        executable="goto_action_server",
+        executable="moveit_action_server",
         output="both",
         parameters=[moveit_config.to_dict()],
     )
@@ -102,7 +102,7 @@ def generate_launch_description():
 
     ld = LaunchDescription(
         [
-            goto_action_server,
+            moveit_action_server,
             rviz_node,
             static_tf,
             robot_state_publisher,
