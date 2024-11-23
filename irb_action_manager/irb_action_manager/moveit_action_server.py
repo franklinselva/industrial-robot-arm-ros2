@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Action server for the GoTo action."""
+"""Action server for the GoTo action.
+
+Contains two action servers:
+- GoTo: Moves the robot to a specified configuration.
+- DropScrew: Moves the robot to a configuration to drop screws.
+"""
 import time
 from threading import Lock
 
