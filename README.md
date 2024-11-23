@@ -12,11 +12,12 @@ This repository is a demonstration of the use of the IRB6640 robot arm for unscr
 
 ### Packages
 
- - **irb6640_action_manager**: Contains the action server related the unscrewing task. Some functionalities are mocked for demonstration purposes.
- - **irb6640_bringup**: Contains the launch files for bringing up the IRB6640 robot arm.
- - **irb6640_description**: Contains the URDF and meshes for the IRB6640 robot arm
- - **irb6640_moveit_config**: Contains the MoveIt configuration for the IRB6640 robot arm
- - **irb6640_task_planner**: Contains the task planner for the unscrewing task. It uses the Embedded Systems Bridge for task planning.
+ - **irb_action_manager**: Contains the action server related the unscrewing task. Some functionalities are mocked for demonstration purposes.
+ - **irb_bringup**: Contains the launch files for bringing up the IRB6640 robot arm.
+ - **irb_description**: Contains the URDF and meshes for the IRB6640 robot arm
+ - **irb_interfaces**: Contains the interface for the IRB6640 robot arm. It uses the ROS2 action server for communication.
+ - **irb_moveit_config**: Contains the MoveIt configuration for the IRB6640 robot arm
+ - **irb_task_planner**: Contains the task planner for the unscrewing task. It uses the Embedded Systems Bridge for task planning.
 
 
 ## Setup
