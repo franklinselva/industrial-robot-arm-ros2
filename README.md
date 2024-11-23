@@ -27,6 +27,7 @@ To run this project, make sure you have ROS2 Jazzy and Moveit2 installed. Then, 
 ```bash
 git clone https://github.com/franklinselva/industrial-robot-arm-ros2.git
 cd industrial-robot-arm-ros2
+pip3 install -r requirements.txt
 rosdep update && rosdep install --from-paths src --ignore-src -r -y --rosdistro $ROS_DISTRO
 colcon build
 source install/setup.bash
