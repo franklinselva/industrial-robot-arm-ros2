@@ -35,8 +35,24 @@ source install/setup.bash
 
 ### Running the project
 
-| TODO: Add instructions on how to run the project
+To run the project, you can use the following commands:
 
+```bash
+# Make sure you have sourced the workspace
+source install/setup.bash
+
+# Bring up the robot arm
+ros2 launch irb_bringup bringup.launch.py
+
+# On a new terminal, run the task planner
+ros2 run irb_task_planner unscrew_task_planner
+```
+
+If you want to run only the task planner, you can use the following command:
+
+```bash
+python3 scripts/unscrew_task_planning.py
+```
 
 ### Known Issues
 
