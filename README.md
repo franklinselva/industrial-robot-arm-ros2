@@ -20,7 +20,7 @@ This repository is a demonstration of the use of the IRB6640 robot arm for unscr
  - **irb_task_planner**: Contains the task planner for the unscrewing task. It uses the Embedded Systems Bridge for task planning.
 
 
-## Setup
+### Setup
 
 To run this project, make sure you have ROS2 Jazzy and Moveit2 installed. Then, clone this repository and run the following commands:
 
@@ -42,3 +42,8 @@ source install/setup.bash
 
  - Moveit2 on ROS2 Jazzy might face issues when running demo.launch.py. You can refer to the issue [moveit/moveit2#2734](https://github.com/moveit/moveit2/issues/2734)
  - The action servers `detect_screws` and `change_tool` are mocked for demonstration purposes. Thus the implementaion is not much reliable. It may fail in some cases. The actual idea is to define the action servers to combine for `srv` and `action`. This may be improved in the future.
+
+### Improvements
+
+ - The task planner can be improved to handle more complex tasks.
+ - The action servers mock can be replaced with actual implementations.
