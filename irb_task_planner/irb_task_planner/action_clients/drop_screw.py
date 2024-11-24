@@ -7,17 +7,17 @@ from rclpy.node import Node
 from irb_interfaces.action import DropScrew  # type: ignore
 
 
-class DropScrewClient(Node):
+class DropScrewClient:
     """DropScrew action client class."""
 
-    def __init__(self):
+    def __init__(self, node: Node):
         """Initialize the action client."""
-        super().__init__("drop_screw_client")
-        self._client = ActionClient(self, DropScrew, "drop_screw")
+        self.node = node
+        self._client = ActionClient(self.node, DropScrew, "drop_screw")
 
         self._client.wait_for_server()
         self.future = None
-        self.get_logger().info("DropScrew Action server is up...")
+        self.node.get_logger().info("DropScrew Action server is up...")
 
     def send_goal(self):
         """Send goal to the action server."""
@@ -30,10 +30,10 @@ class DropScrewClient(Node):
         """Callback for goal response."""
         goal_handle = future.result()
         if not goal_handle.accepted:
-            self.get_logger().info("Goal rejected")
+            self.node.get_logger().info("Goal rejected")
             return
 
-        self.get_logger().info("Goal accepted")
+        self.node.get_logger().info("Goal accepted")
 
         goal_handle.get_result_async().add_done_callback(self.get_result_callback)
 
@@ -41,21 +41,22 @@ class DropScrewClient(Node):
         """Callback for goal result."""
         result = future.result().result
         if result.success:
-            self.get_logger().info("Goal reached successfully")
+            self.node.get_logger().info("Goal reached successfully")
         else:
-            self.get_logger().info("Goal failed")
+            self.node.get_logger().info("Goal failed")
 
     def feedback_callback(self, feedback_msg):
         """Print feedback message."""
-        self.get_logger().info(f"Feedback received: {feedback_msg}")
+        self.node.get_logger().info(f"Feedback received: {feedback_msg}")
 
 
 def main(args=None):
     """DropScrew action client main function."""
     rclpy.init(args=args)
-    client = DropScrewClient()
+    node = Node("drop_screw_client")
+    client = DropScrewClient(node)
     client.send_goal()
-    rclpy.spin(client)
+    rclpy.spin(node)
 
 
 if __name__ == "__main__":

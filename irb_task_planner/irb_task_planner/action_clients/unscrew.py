@@ -7,17 +7,17 @@ from rclpy.node import Node
 from irb_interfaces.action import Unscrew  # type: ignore
 
 
-class UnscrewClient(Node):
+class UnscrewClient:
     """Unscrew action client class."""
 
-    def __init__(self):
+    def __init__(self, node: Node):
         """Initialize the action client."""
-        super().__init__("unscrew_client")
-        self._client = ActionClient(self, Unscrew, "unscrew")
+        self.node = node
+        self._client = ActionClient(self.node, Unscrew, "unscrew")
 
         self._client.wait_for_server()
         self.future = None
-        self.get_logger().info("Unscrew Action server is up...")
+        self.node.get_logger().info("Unscrew Action server is up...")
 
     def send_goal(self):
         """Send goal to the action server."""
@@ -30,10 +30,10 @@ class UnscrewClient(Node):
         """Callback for goal response."""
         goal_handle = future.result()
         if not goal_handle.accepted:
-            self.get_logger().info("Goal rejected")
+            self.node.get_logger().info("Goal rejected")
             return
 
-        self.get_logger().info("Goal accepted")
+        self.node.get_logger().info("Goal accepted")
 
         goal_handle.get_result_async().add_done_callback(self.get_result_callback)
 
@@ -41,21 +41,22 @@ class UnscrewClient(Node):
         """Callback for goal result."""
         result = future.result().result
         if result.success:
-            self.get_logger().info("Screw unscrewed successfully")
+            self.node.get_logger().info("Screw unscrewed successfully")
         else:
-            self.get_logger().info("Screw unscrew failed")
+            self.node.get_logger().info("Screw unscrew failed")
 
     def feedback_callback(self, feedback_msg):
         """Print feedback message."""
-        self.get_logger().info(f"Feedback received: {feedback_msg}")
+        self.node.get_logger().info(f"Feedback received: {feedback_msg}")
 
 
 def main(args=None):
     """Unscrew action client main function."""
     rclpy.init(args=args)
-    client = UnscrewClient()
+    node = Node("unscrew_client")
+    client = UnscrewClient(node)
     client.send_goal()
-    rclpy.spin(client)
+    rclpy.spin(node)
 
 
 if __name__ == "__main__":

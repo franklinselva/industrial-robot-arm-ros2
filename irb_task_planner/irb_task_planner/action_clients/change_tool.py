@@ -7,17 +7,17 @@ from rclpy.node import Node
 from irb_interfaces.action import ChangeTool  # type: ignore
 
 
-class ChangeToolClient(Node):
+class ChangeToolClient:
     """Change tool action client class."""
 
-    def __init__(self):
+    def __init__(self, node: Node):
         """Initialize the action client."""
-        super().__init__("change_tool_client")
-        self._client = ActionClient(self, ChangeTool, "change_tool")
+        self._node = node
+        self._client = ActionClient(self._node, ChangeTool, "change_tool")
 
         self._client.wait_for_server()
         self.future = None
-        self.get_logger().info("Change Tool Action server is up...")
+        self._node.get_logger().info("Change Tool Action server is up...")
 
     def send_goal(self):
         """Send goal to the action server."""
@@ -31,10 +31,10 @@ class ChangeToolClient(Node):
         """Callback for goal response."""
         goal_handle = future.result()
         if not goal_handle.accepted:
-            self.get_logger().info("Goal rejected")
+            self._node.get_logger().info("Goal rejected")
             return
 
-        self.get_logger().info("Goal accepted")
+        self._node.get_logger().info("Goal accepted")
 
         goal_handle.get_result_async().add_done_callback(self.get_result_callback)
 
@@ -42,21 +42,22 @@ class ChangeToolClient(Node):
         """Callback for goal result."""
         result = future.result().result
         if result.success:
-            self.get_logger().info("Tool changed successfully")
+            self._node.get_logger().info("Tool changed successfully")
         else:
-            self.get_logger().info("Tool change failed")
+            self._node.get_logger().info("Tool change failed")
 
     def feedback_callback(self, feedback_msg):
         """Print feedback message."""
-        self.get_logger().info(f"Feedback received: {feedback_msg}")
+        self._node.get_logger().info(f"Feedback received: {feedback_msg}")
 
 
 def main(args=None):
     """Change tool action client main function."""
     rclpy.init(args=args)
-    client = ChangeToolClient()
+    node = Node("change_tool_client")
+    client = ChangeToolClient(node)
     client.send_goal()
-    rclpy.spin(client)
+    rclpy.spin(node)
 
 
 if __name__ == "__main__":
