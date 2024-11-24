@@ -131,7 +131,7 @@ Visualization Manager:
         Robot Alpha: 0.5
         Robot Color: 150; 50; 150
         Show Robot Collision: false
-        Show Robot Visual: true
+        Show Robot Visual: false
         Show Trail: false
         State Display Time: 0.05 s
         Trail Step Size: 1
@@ -229,7 +229,7 @@ Visualization Manager:
             Value: true
           screwdriver_tcp:
             Alpha: 1
-            Show Axes: true
+            Show Axes: false
             Show Trail: false
           tool0:
             Alpha: 1

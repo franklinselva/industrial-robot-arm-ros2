@@ -140,10 +140,7 @@ class RobotArm:
             raise ChildProcessError("Unscrew client is not set")
 
         print(f"Unscrewing {screw}")
-        result = cls.goto_client.send_goal(screw.name)  # type: ignore
-        time.sleep(3)
-        if not result.success:
-            return False
+        time.sleep(5)
 
         # Drop screw
         result = cls.drop_screw_client.send_goal()  # type: ignore
