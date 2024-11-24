@@ -1,17 +1,25 @@
-"""Unscrew task planning .
+""" Problem definition for unscrew task planning.
 
 A simple representation of the task planning for unscrewing screws.
 """
 
-from typing import List
+import time
+from typing import List, Optional
 
-import networkx as nx  # type: ignore
-import unified_planning as up  # type: ignore
-from matplotlib import pyplot as plt  # type: ignore
 from up_esb.bridge import Bridge  # type: ignore
-from up_esb.plexmo import PlanDispatcher  # type: ignore
+
+from irb_task_planner.action_clients import (
+    ChangeToolClient,
+    DetectScrewClient,
+    DropScrewClient,
+    GoToClient,
+    UnscrewClient,
+)
 
 
+####################################################################################################
+## Object representation
+####################################################################################################
 class Pose:
     """Pose representation."""
 
@@ -25,6 +33,9 @@ class Pose:
         return self.name == other.name
 
 
+####################################################################################################
+## Robot arm representation
+####################################################################################################
 class RobotArm:
     """Robot arm representation."""
 
@@ -35,47 +46,118 @@ class RobotArm:
     screws: List[Pose] = []
     unscrews: List[Pose] = []
 
+    change_tool_client: Optional[ChangeToolClient] = None
+    detect_screw_client: Optional[DetectScrewClient] = None
+    drop_screw_client: Optional[DropScrewClient] = None
+    goto_client: Optional[GoToClient] = None
+    unscrew_client: Optional[UnscrewClient] = None
+
+    @classmethod
+    def set_change_tool_client(cls, client):
+        """Set change tool client."""
+        RobotArm.change_tool_client = client
+
+    @classmethod
+    def set_detect_screw_client(cls, client):
+        """Set detect screw client."""
+        RobotArm.detect_screw_client = client
+
+    @classmethod
+    def set_drop_screw_client(cls, client):
+        """Set drop screw client."""
+        RobotArm.drop_screw_client = client
+
+    @classmethod
+    def set_goto_client(cls, client):
+        """Set goto client."""
+        RobotArm.goto_client = client
+
+    @classmethod
+    def set_unscrew_client(cls, client):
+        """Set unscrew client."""
+        RobotArm.unscrew_client = client
+
     @classmethod
     def goto(cls, pose_from: Pose, pose_to: Pose):
         """Move robot arm to a pose."""
         if pose_from != cls.pose:
             return False
 
-        print(f"Move from {pose_from} to {pose_to}")
-        cls.pose = pose_to
+        if cls.goto_client is None:
+            raise ChildProcessError("Goto client is not set")
 
-        return True
+        print(f"Move from {pose_from} to {pose_to}")
+        result = cls.goto_client.send_goal(pose_to.name)
+
+        if result.success:
+            cls.pose = pose_to
+            return True
+
+        return False
 
     @classmethod
     def detect_screw(cls):
         """Detect screw."""
-        print("Detect screw")
         cls.screws = [
-            Pose("screw1"),
-            Pose("screw2"),
-            Pose("screw3"),
-            Pose("screw4"),
-            Pose("screw5"),
+            Pose("screw_pose_1"),
+            Pose("screw_pose_2"),
+            Pose("screw_pose_3"),
+            Pose("screw_pose_4"),
+            Pose("screw_pose_5"),
         ]
-        cls.are_screws_detected = True
-        return True
+
+        if cls.detect_screw_client is None:
+            raise ChildProcessError("Detect screw client is not set")
+
+        print("Detecting screws")
+        result = cls.detect_screw_client.send_goal()
+
+        if result.success:
+            cls.are_screws_detected = True
+            return True
+
+        return False
 
     @classmethod
     def change_tool(cls):
         """Change tool."""
+
+        if cls.change_tool_client is None:
+            raise ChildProcessError("Change tool client is not set")
+
         print("Changing to screwdriver")
-        cls.has_screwdriver = True
-        return True
+        result = cls.change_tool_client.send_goal()
+
+        if result.success:
+            cls.has_screwdriver = True
+            return True
+        return False
 
     @classmethod
     def unscrew(cls, screw: Pose):
         """Unscrew."""
+        if cls.unscrew_client is None:
+            raise ChildProcessError("Unscrew client is not set")
+
         print(f"Unscrewing {screw}")
-        cls.unscrews.append(screw)
-        cls.has_screw = True
-        return True
+        result = cls.goto_client.send_goal(screw.name)  # type: ignore
+        time.sleep(3)
+        if not result.success:
+            return False
+
+        # Drop screw
+        result = cls.drop_screw_client.send_goal()  # type: ignore
+
+        if result.success:
+            cls.unscrews.append(screw)
+            return True
+
+        return False
 
 
+####################################################################################################
+## Fluent functions
+####################################################################################################
 def robot_at_fn(pose: Pose):
     """Check if robot is at a pose."""
     return RobotArm.pose == pose
@@ -106,6 +188,9 @@ def has_screw_at_tool_fn():
     return RobotArm.has_screw
 
 
+####################################################################################################
+## Problem definition
+####################################################################################################
 def define_problem():
     """UP Problem representation."""
 
@@ -123,11 +208,11 @@ def define_problem():
     detect_screws_pose = bridge.create_object("detect_screws", Pose("detect_screws"))
     change_tool_pose = bridge.create_object("change_tool", Pose("change_tool"))
     drop_screw_pose = bridge.create_object("drop_screw", Pose("drop_screw"))
-    screw1_pose = bridge.create_object("screw1", Pose("screw1"))
-    screw2_pose = bridge.create_object("screw2", Pose("screw2"))
-    screw3_pose = bridge.create_object("screw3", Pose("screw3"))
-    screw4_pose = bridge.create_object("screw4", Pose("screw4"))
-    screw5_pose = bridge.create_object("screw5", Pose("screw5"))
+    screw1_pose = bridge.create_object("screw_pose_1", Pose("screw_pose_1"))
+    screw2_pose = bridge.create_object("screw_pose_2", Pose("screw_pose_2"))
+    screw3_pose = bridge.create_object("screw_pose_3", Pose("screw_pose_3"))
+    screw4_pose = bridge.create_object("screw_pose_4", Pose("screw_pose_4"))
+    screw5_pose = bridge.create_object("screw_pose_5", Pose("screw_pose_5"))
 
     goto, [pose_from, pose_to] = bridge.create_action(
         "Goto", _callable=RobotArm.goto, pose_from=Pose, pose_to=Pose
@@ -190,44 +275,3 @@ def define_problem():
     problem.add_goal(robot_at(home_pose))
 
     return problem, bridge
-
-
-def main():
-    """Main function."""
-
-    up.shortcuts.get_environment().credits_stream = None
-    problem, bridge = define_problem()
-    dispatcher = PlanDispatcher()
-
-    plan = bridge.solve(problem, planner_name="pyperplan")
-
-    print("*" * 30)
-    print("* Plan *")
-    for action in plan.actions:
-        print(action)
-    print("*" * 30)
-
-    graph = bridge.get_executable_graph(plan)
-    dispatcher.execute_plan(plan, graph)
-
-    plt.figure(figsize=(10, 10))
-
-    labels = {}
-    for node in graph.nodes(data=True):
-        labels[node[0]] = node[1]["node_name"]
-
-    pos = nx.nx_pydot.pydot_layout(graph, prog="dot")
-    nx.draw(
-        graph,
-        pos,
-        with_labels=True,
-        labels=labels,
-        node_size=1000,
-        node_color="skyblue",
-        font_size=20,
-    )
-    plt.show()
-
-
-if __name__ == "__main__":
-    main()

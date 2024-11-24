@@ -26,6 +26,7 @@ setup(
             "detect_screw_client = irb_task_planner.action_clients.detect_screw:main",
             "goto_client = irb_task_planner.action_clients.goto:main",
             "drop_screw_client = irb_task_planner.action_clients.drop_screw:main",
+            "unscrew_task_planner = irb_task_planner.unscrew_task:main",
         ],
     },
 )
