@@ -16,7 +16,6 @@ class ChangeToolClient:
         self._client = ActionClient(self._node, ChangeTool, "change_tool")
 
         self._client.wait_for_server()
-        self.future = None
         self._node.get_logger().info("Change Tool Action server is up...")
 
     def send_goal(self):
@@ -24,31 +23,20 @@ class ChangeToolClient:
         goal_msg = ChangeTool.Goal()
         goal_msg.tool_size = 0
         goal_msg.tool_type = 0
-        self.future = self._client.send_goal_async(goal_msg)
-        self.future.add_done_callback(self.goal_response_callback)
+        future = self._client.send_goal_async(goal_msg)
 
-    def goal_response_callback(self, future):
-        """Callback for goal response."""
+        rclpy.spin_until_future_complete(self._node, future)
         goal_handle = future.result()
+
         if not goal_handle.accepted:
             self._node.get_logger().info("Goal rejected")
-            return
+            return ChangeTool.Result()
 
-        self._node.get_logger().info("Goal accepted")
+        result_future = goal_handle.get_result_async()
+        rclpy.spin_until_future_complete(self._node, result_future)
+        result = result_future.result().result
 
-        goal_handle.get_result_async().add_done_callback(self.get_result_callback)
-
-    def get_result_callback(self, future):
-        """Callback for goal result."""
-        result = future.result().result
-        if result.success:
-            self._node.get_logger().info("Tool changed successfully")
-        else:
-            self._node.get_logger().info("Tool change failed")
-
-    def feedback_callback(self, feedback_msg):
-        """Print feedback message."""
-        self._node.get_logger().info(f"Feedback received: {feedback_msg}")
+        return result
 
 
 def main(args=None):
@@ -56,8 +44,7 @@ def main(args=None):
     rclpy.init(args=args)
     node = Node("change_tool_client")
     client = ChangeToolClient(node)
-    client.send_goal()
-    rclpy.spin(node)
+    print(client.send_goal())
 
 
 if __name__ == "__main__":

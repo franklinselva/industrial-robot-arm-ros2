@@ -100,7 +100,7 @@ class GoToActionServer(Node):
 
         self.arm.set_goal_state(configuration_name="drop_screws")
 
-        result = GoTo.Result()
+        result = DropScrew.Result()
         result.success = plan_and_execute(self.irb, self.arm, self.logger)
 
         return result
